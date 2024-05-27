@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package biker.api.payments.v1;
+
+import "types/payment_method.proto";
+
+message Payment {
+  string id = 1;
+  string ride_id = 2;
+  int32 amount = 3;
+  biker.types.PaymentMethod method = 4;
+  PaymentStatus status = 5;
+  int64 created_at = 98;
+  int64 updated_at = 99;
+}
+
+enum PaymentStatus {
+  UNKNOWN_PAYMENT_STATUS = 0;
+  PENDING = 1;
+  CANCELLED = 2;
+  REJECTED = 3;
+  COMPLETED = 4;
+}

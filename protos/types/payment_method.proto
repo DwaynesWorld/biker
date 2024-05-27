@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package biker.types;
+
+enum PaymentMethod {
+  UNKNOWN_PAYMENT_METHOD = 0;
+  CREDIT = 1;
+  DEBIT = 2;
+  APPLE_PAY = 3;
+  PAYPAL = 4;
+}

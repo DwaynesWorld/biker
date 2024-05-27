@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package biker.api.rides.v1;
+
+import "types/point.proto";
+
+message Ride {
+  string id = 1;
+  string user_id = 2;
+  string bike_id = 3;
+  RideStatus status = 4;
+  biker.types.Point source = 5;
+  biker.types.Point destination = 6;
+  int64 created_at = 98;
+  int64 updated_at = 99;
+}
+
+message CreateRideRequest {
+  string user_id = 1;
+  string bike_id = 2;
+  RideStatus status = 4;
+  biker.types.Point source = 5;
+  biker.types.Point destination = 6;
+}
+
+message CreateRideResponse {
+  // The unique identfier of the created ride
+  string id = 1;
+}
+
+enum RideStatus {
+  UNKNOWN_RIDE_STATUS = 0;
+  RESERVED = 1;
+  IN_PROGRESS = 2;
+  COMPLETED = 3;
+  CANCELLED = 4;
+}

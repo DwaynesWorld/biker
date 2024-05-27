@@ -1,0 +1,48 @@
+name: Build & Test Server
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '.github/**'
+      - 'Cargo.lock'
+      - 'Cargo.toml'
+      - 'protos/**'
+      - 'biker-server/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '.github/**'
+      - 'Cargo.lock'
+      - 'Cargo.toml'
+      - 'protos/**'
+      - 'biker-server/**'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Protoc
+      uses: arduino/setup-protoc@v2
+      with:
+        version: "23.x"
+
+    - name: ⚡ Cache
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/registry
+          ~/.cargo/git
+          target
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: 🏗️ Build
+      run: cargo build
+    
+    - name: ✅ Tests
+      run: cargo test

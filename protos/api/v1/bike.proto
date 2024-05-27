@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package biker.api.bikes.v1;
+
+import "types/point.proto";
+
+message Bike {
+  string id = 1;
+  string code = 2;
+  string model = 3;
+  biker.types.Point location = 4;
+  int64 created_at = 98;
+  int64 updated_at = 99;
+}
+
+message CreateBikeRequest {
+  string code = 1;
+  string model = 2;
+  biker.types.Point location = 3;
+}
+
+message CreateBikeResponse {
+  // The unique identfier of the created bike
+  string id = 1;
+}
