@@ -13,6 +13,11 @@ message Bike {
   int64 updated_at = 99;
 }
 
+message BikeDistance {
+  Bike bike = 1;
+  double distance = 2;
+}
+
 message CreateBikeRequest {
   string code = 1;
   string model = 2;
@@ -22,4 +27,22 @@ message CreateBikeRequest {
 message CreateBikeResponse {
   // The unique identfier of the created bike
   string id = 1;
+}
+
+message FindNearbyBikesQueryParams {
+  // For simpler deserialization, the Point struct has been flattened.
+
+  // The latitude in degrees. It must be in the range [-90.0, +90.0].
+  double latitude = 1;
+
+  // The longitude in degrees. It must be in the range [-180.0, +180.0].
+  double longitude = 2;
+
+  // Radius to search for nearby bikes in meters.
+  double max_distance_in_meters = 3;
+}
+
+message FindNearbyBikesResponse {
+  repeated BikeDistance bikes = 1;
+  int32 count = 2;
 }

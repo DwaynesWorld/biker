@@ -10,11 +10,13 @@ CREATE TABLE IF NOT EXISTS bikes (
 );
 
 CREATE TABLE IF NOT EXISTS users (
-    id UUID NOT NULL,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
+    id TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    nickname TEXT NOT NULL,
     email TEXT NOT NULL,
+    email_verified BOOLEAN NOT NULL,
     phone TEXT NULL,
+    picture_uri TEXT NULL,
     "status" TEXT NOT NULL,
     default_payment_method TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL,

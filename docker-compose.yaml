@@ -2,7 +2,7 @@
 version: "3"
 
 services:
-  forum-db:
+  biker-db:
     image: postgis/postgis:16-3.4
     restart: always
     ports:
